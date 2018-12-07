@@ -1,0 +1,56 @@
+.App {
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background: #bc4e9c;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #f80759, #bc4e9c);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #f80759, #bc4e9c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  margin: unset;
+}
+
+.custom-input > input {
+  margin: 5px 0;
+  border-radius: 5px;
+  border-style: none;
+  padding: 15px 7px;
+  background-color: #dec2cc;
+  /* color: #ffffff; */
+}
+
+.custom-button {
+  border-style: none;
+  background-color: rgb(74, 67, 71);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  height: 50px;
+  font-size: 18px;
+  width: 100%;
+}
+
+.form-container {
+  width: 500px;
+  border-width: 1px;
+  border-style: solid;
+  padding: 50px;
+  border-radius: 5px;
+  border-color: #dec2cc;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.gradient-bc {
+  background: #bc4e9c;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #f80759, #bc4e9c);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #f80759, #bc4e9c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+
+.inputSeparation > input {
+  margin: 5px 0;
+  border-radius: 5px;
+  border-style: none;
+  padding: 15px 7px;
+  background-color: #dec2cc;
+  color: #ffffff;
+}
