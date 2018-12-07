@@ -1,7 +1,7 @@
 {
-  "name": "candidates",
+  "name": "Tessty",
   "version": "1.0.0",
-  "description": "candidates app is a Project proposal. ",
+  "description": "Tessty Candidates project.",
   "main": "index.js",
   "scripts": {
     "start": "npm run build:dev",
