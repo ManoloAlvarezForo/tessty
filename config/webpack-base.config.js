@@ -18,6 +18,11 @@ module.exports = () => ({
       {
         test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
         loader: 'file-loader?name=[name].[ext]'  // <-- retain original file name
+    }, {
+      test: /\.(gif|eot|woff|woff2|ttf|svg)$/,
+      loaders: [
+        'url-loader'
+      ]
     }
     ]
   },
