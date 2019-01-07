@@ -12,19 +12,19 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo'
 import { onError } from "apollo-link-error";
 
-import {AUTH_TOKEN, GRAPHQL_URL} from './Utils/Constans/Communication';
+import { AUTH_TOKEN, GRAPHQL_URL } from './Utils/Constans/Communication';
 
 
 const linkError = onError(({ graphQLErrors, networkError }) => {
     if (graphQLErrors)
-      graphQLErrors.map(({ message, locations, path }) =>
-        console.log(
-          `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-        ),
-      );
-  
+        graphQLErrors.map(({ message, locations, path }) =>
+            console.log(
+                `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+            ),
+        );
+
     if (networkError) console.log(`[Network error]: ${networkError}`);
-  });
+});
 
 const httpLink = createHttpLink({
     uri: GRAPHQL_URL,

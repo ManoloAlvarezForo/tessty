@@ -3,17 +3,33 @@ import { hot } from "react-hot-loader";
 import Routes from './Routes/Routes';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { BrowserRouter as Router } from 'react-router-dom';
-import purple from '@material-ui/core/colors/purple';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 const theme = createMuiTheme({
+  // overrides: {
+  //   // Name of the component ⚛️ / style sheet
+  //   MuiButton: {
+  //     // Name of the rule
+  //     root: {
+  //       // Some CSS
+  //       background: 'linear-gradient(45deg, #13b9cc 30%, #13b9cc 90%)',
+  //       borderRadius: 5,
+  //       border: 0,
+  //       color: 'white',
+  //       height: 48,
+  //       padding: '0 40px',
+  //       boxShadow: '0 0 3px 1px rgba(0, 188, 212, 0.38)',
+  //     },
+  //   },
+  // },
   palette: {
-    type: 'dark',
+    // type: 'dark',
     primary: {
       // light: will be calculated from palette.primary.main,
       main: '#13b9cc',
       // main: '#F3663B', Orange.
       // main: '#03A9F4', Blue convination.
-      // dark: will be calculated from palette.primary.main,
+      // dark: 
       // contrastText: will be calculated to contrast with palette.primary.main
     },
     secondary: {
@@ -38,6 +54,7 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
+        <CssBaseline />
         <Router>
           <Routes />
         </Router>
