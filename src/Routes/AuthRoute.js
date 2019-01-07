@@ -1,18 +1,16 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom'
 import { AUTH_TOKEN } from '../Utils/Constans/Communication'
-import WithMain from '../Hoc/WithMain';
 
 function isAuthenticated() {
     return localStorage.getItem(AUTH_TOKEN) ? true : false;
 }
 
-export const AuthRoute = ({ component: Component, ...rest }) => {
-    const Main = WithMain(Component);
+export const AuthRoute = ({ component: Component, container: CustomContainer, ...rest}) => {
     return (
-        <Route {...rest} render={() => (
+        <Route {...rest} render={(props) => (
             isAuthenticated() === true
-                ? <Main />
+                ? <CustomContainer body={<Component {...props} />} />
                 : <Redirect to="/authentication" />
         )} />
     )

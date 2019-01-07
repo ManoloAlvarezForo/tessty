@@ -4,18 +4,20 @@ import { AUTH_TOKEN } from '../../Utils/Constans/Communication';
 import { LOGIN_MUTATION, SIGNUP_MUTATION } from './AuthenticationQuery';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 
-import { textFieldStyles } from '../../Utils/TextFieldStyles';
-import { withStyles } from '@material-ui/core/styles';
 import { FiLock } from 'react-icons/fi';
 import { FiMail } from 'react-icons/fi';
 import { FiUser } from 'react-icons/fi';
+
+import { FiFacebook } from 'react-icons/fi';
+import { FiTwitter } from 'react-icons/fi';
+import { IoLogoGoogle } from "react-icons/io";
 
 //Styles
 import './Authentication.css';
 import { Typography } from '@material-ui/core';
 
-const styles = textFieldStyles
 
 class Authentication extends React.Component {
     constructor(props) {
@@ -39,152 +41,110 @@ class Authentication extends React.Component {
             name
         } = this.state;
 
-        const { classes } = this.props;
-
         return (
-            <div style={{ display: 'flex', flexDirection: 'row', height: '100%' }}>
-                <div className="title-logo">
-                    Tessty
-                </div>
-                <div className="auth-container">
-                    <div className="form-container">
-                        <div style={{ textAlign: 'center', fontSize: '2rem', margin: '60px 0' }} className="mv3">
-                            {
-                                login ? <Typography component="h4" variant="h4" gutterBottom>Welcome</Typography> : <Typography component="h4" variant="h4" gutterBottom>Sign up</Typography>
-                            }
-                        </div>
-                        <div className="space custom-input" style={{ display: 'flex', flexDirection: 'column', margin: '20px 0' }}>
-                            {!login && (
-                                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                    <div style={{ margin: '0 12px', display: 'flex', alignItems: 'center' }}>
-                                        <FiUser style={{ fontSize: '24px', color: 'gray' }} />
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                    <div className="title-logo">
+                        <Typography style={{ fontFamily: 'Pacifico Regular', fontSize: '7rem', fontWeight: 'normal' }} component="h4" variant="h4" gutterBottom>Tessty</Typography>
+                    </div>
+                    <div className="auth-container" style={{ height: '100%' }}>
+                        <div className="form-container" style={{ flexDirection: 'column', display: 'flex' }}>
+                            <div>
+                                <div style={{ textAlign: 'center', fontSize: '2rem', margin: '60px 0' }} className="mv3">
+                                    {
+                                        login ? <Typography component="h4" variant="h4" gutterBottom>Welcome</Typography> : <Typography component="h4" variant="h4" gutterBottom>Sign up</Typography>
+                                    }
+                                </div>
+                                <div className="space custom-input" style={{ display: 'flex', flexDirection: 'column', margin: '20px 0' }}>
+                                    {!login && (
+                                        <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                            <div style={{ margin: '0 12px', display: 'flex', alignItems: 'center' }}>
+                                                <FiUser style={{ fontSize: '24px', color: 'gray' }} />
+                                            </div>
+                                            <TextField style={{ margin: '10px 0', width: '100%' }}
+                                                value={name}
+                                                onChange={e => this.setState({ name: e.target.value })}
+                                                label="Name"
+                                                variant="outlined"
+                                            />
+                                        </div>
+
+                                    )}
+                                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                        <div style={{ margin: '0 12px', display: 'flex', alignItems: 'center' }}>
+                                            <FiMail style={{ fontSize: '24px', color: 'gray' }} />
+                                        </div>
+                                        <TextField style={{ margin: '10px 0', width: '100%' }}
+                                            value={email}
+                                            onChange={e => this.setState({ email: e.target.value })}
+                                            label="Email"
+                                            variant="outlined"
+                                        />
                                     </div>
-                                    <TextField style={{ margin: '10px 0', width: '100%' }}
-                                        value={name}
-                                        onChange={e => this.setState({ name: e.target.value })}
-                                        label="Name"
-                                        variant="outlined"
-                                        InputLabelProps={{
-                                            classes: {
-                                                root: classes.cssLabel,
-                                                focused: classes.cssFocused,
-                                            },
-                                        }}
-                                        InputProps={{
-                                            classes: {
-                                                root: classes.cssOutlinedInput,
-                                                focused: classes.cssFocused,
-                                                notchedOutline: classes.notchedOutline,
-                                            },
-                                        }}
-                                    />
-                                </div>
-
-                            )}
-                            <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                <div style={{ margin: '0 12px', display: 'flex', alignItems: 'center' }}>
-                                    <FiMail style={{ fontSize: '24px', color: 'gray' }} />
-                                </div>
-                                <TextField style={{ margin: '10px 0', width: '100%' }}
-                                    value={email}
-                                    onChange={e => this.setState({ email: e.target.value })}
-                                    label="Email"
-                                    variant="outlined"
-                                    InputLabelProps={{
-                                        classes: {
-                                            root: classes.cssLabel,
-                                            focused: classes.cssFocused,
-                                        },
-                                    }}
-                                    InputProps={{
-                                        classes: {
-                                            root: classes.cssOutlinedInput,
-                                            focused: classes.cssFocused,
-                                            notchedOutline: classes.notchedOutline,
-                                        },
-                                    }}
-                                />
-                            </div>
-                            <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                <div style={{ margin: '0 12px', display: 'flex', alignItems: 'center' }}>
-                                    <FiLock style={{ fontSize: '24px', color: 'gray' }} />
-                                </div>
-                                <TextField style={{ margin: '10px 0', width: '100%', borderRadius: '50%' }}
-                                    value={password}
-                                    onChange={e => this.setState({ password: e.target.value })}
-                                    label="Password"
-                                    type="password"
-                                    variant="outlined"
-                                    InputLabelProps={{
-                                        classes: {
-                                            root: classes.cssLabel,
-                                            focused: classes.cssFocused,
-                                        },
-                                    }}
-                                    InputProps={{
-                                        classes: {
-                                            root: classes.cssOutlinedInput,
-                                            focused: classes.cssFocused,
-                                            notchedOutline: classes.notchedOutline,
-                                        },
-                                    }}
-                                />
-                            </div>
-                            {!login && (
-                                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                    <div style={{ margin: '0 12px', display: 'flex', alignItems: 'center' }}>
-                                        <FiLock style={{ fontSize: '24px', color: 'gray' }} />
+                                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                        <div style={{ margin: '0 12px', display: 'flex', alignItems: 'center' }}>
+                                            <FiLock style={{ fontSize: '24px', color: 'gray' }} />
+                                        </div>
+                                        <TextField style={{ margin: '10px 0', width: '100%', borderRadius: '50%' }}
+                                            value={password}
+                                            onChange={e => this.setState({ password: e.target.value })}
+                                            label="Password"
+                                            type="password"
+                                            variant="outlined"
+                                        />
                                     </div>
-                                    <TextField style={{ margin: '10px 0', width: '100%', borderRadius: '50%' }}
-                                        value={repeatPassword}
-                                        onChange={e => this.setState({ repeatPassword: e.target.value })}
-                                        label="Repeat Password"
-                                        type="password"
-                                        variant="outlined"
-                                        InputLabelProps={{
-                                            classes: {
-                                                root: classes.cssLabel,
-                                                focused: classes.cssFocused,
-                                            },
-                                        }}
-                                        InputProps={{
-                                            classes: {
-                                                root: classes.cssOutlinedInput,
-                                                focused: classes.cssFocused,
-                                                notchedOutline: classes.notchedOutline,
-                                            },
-                                        }}
-                                    />
+                                    {!login && (
+                                        <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                            <div style={{ margin: '0 12px', display: 'flex', alignItems: 'center' }}>
+                                                <FiLock style={{ fontSize: '24px', color: 'gray' }} />
+                                            </div>
+                                            <TextField style={{ margin: '10px 0', width: '100%', borderRadius: '50%' }}
+                                                value={repeatPassword}
+                                                onChange={e => this.setState({ repeatPassword: e.target.value })}
+                                                label="Repeat Password"
+                                                type="password"
+                                                variant="outlined"
+                                            />
+                                        </div>
+
+                                    )}
                                 </div>
+                                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                    <Mutation
+                                        mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
+                                        variables={{ email, password, name }}
+                                        onCompleted={data => this._confirm(data)}
+                                        onError={error => this.setState({
+                                            messageError: error
+                                        })}
+                                    >
+                                        {mutation => (
+                                            <Button variant="contained" color="primary" size="large" style={{ marginLeft: 'auto', color: 'white' }} onClick={mutation}>
+                                                {login ? 'LOGIN' : 'CREATE ACCOUNT'}
+                                            </Button>
+                                        )}
+                                    </Mutation>
 
-                            )}
-
-                        </div>
-                        <div style={{ display: 'flex', flexDirection: 'column' }}>
-                            <Mutation
-                                mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
-                                variables={{ email, password, name }}
-                                onCompleted={data => this._confirm(data)}
-                                onError={error => this.setState({
-                                    messageError: error
-                                })}
-                            >
-                                {mutation => (
-                                    <Button variant="outlined" color='primary' style={{ marginLeft: 'auto' }} onClick={mutation}>
-                                        {login ? 'LOGIN' : 'CREATE ACCOUNT'}
-                                    </Button>
-                                )}
-                            </Mutation>
-                            <div
-                                className="pointer button"
-                                onClick={() => this.setState({ login: !login })}
-                            >
-                                <div style={{ margin: '30px 0', color: 'white', textAlign: 'center' }}>
-                                    <Button style={{ fontSize: '11px', color: 'white' }} className={classes.button}>
-                                        {login ? 'DON’T HAVE AN ACCOUNT YET?  SIGNUP ' : 'already have an account?'}
-                                    </Button>
                                 </div>
-
+                            </div>
+                            <div style={{ display: 'flex', flexDirection: 'column', marginTop: 'auto' }}>
+                                <div onClick={() => this.setState({ login: !login })} style={{ margin: '30px 0', textAlign: 'center', cursor: 'pointer' }}>
+                                    <Typography variant="subtitle1" gutterBottom>{login ? 'Don\'t have an account yet? Sign up.' : 'Already have an account? Login.'}</Typography>
+                                </div>
+                                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+                                    <IconButton onClick={() => console.log('Authentication with other account pressed.')} style={{ color: '#3A589E' }} aria-label="Register with Facebook">
+                                        <FiFacebook />
+                                    </IconButton>
+                                    <IconButton onClick={() => console.log('Authentication with other account pressed.')} style={{ color: '#55ACEE' }} aria-label="Register With Twitter">
+                                        <FiTwitter />
+                                    </IconButton>
+                                    <IconButton onClick={() => console.log('Authentication with other account pressefd.')} style={{ color: '#ea4335' }} aria-label="Register with Google">
+                                        <IoLogoGoogle />
+                                    </IconButton>
+                                </div>
+                                <div onClick={() => console.log('Term of use. Privacy policy pressedss.')} style={{ marginTop: '30px', textAlign: 'center', cursor: 'pointer' }}>
+                                    <Typography variant="caption">Term of use. Privacy policy</Typography>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -194,16 +154,15 @@ class Authentication extends React.Component {
     }
 
     _confirm = async data => {
-        const { token } = this.state.login ? data.login : data.signup
-        this._saveUserData(token)
-        this.props.history.push('/')
+        const { token } = this.state.login ? data.login : data.signup;
+        this._saveUserData(token);
+        this.props.history.push('/');
     }
 
     _saveUserData = token => {
         localStorage.setItem(AUTH_TOKEN, token)
-        localStorage.setItem('manolo', 'manolo')
     }
 }
 
 
-export default withStyles(styles)(Authentication);
+export default Authentication;
