@@ -124,7 +124,7 @@ class MiniDrawer extends React.Component {
                                                 [classes.hide]: !this.state.open,
                                             })}
                                         >
-                                            <FiChevronLeft />
+                                            <FiChevronLeft color="gray"/>
                                         </IconButton>
                                     )
                                 }

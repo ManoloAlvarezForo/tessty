@@ -2,12 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MiniDrawer from './MiniDrawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { TitleProvider, TitleConsumer } from '../../Context/TitleContext';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
 
 const styles = theme => ({
     root: {
@@ -17,12 +13,15 @@ const styles = theme => ({
     mainContent: {
         display: 'flex',
         flexDirection: 'column',
-        width: '100%'
+        width: '100%',
+        height: '100vh',
+        overflow: 'hidden'
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing.unit * 3,
-    },
+        // padding: '0 24px',
+        overflow: 'hidden'
+    }
 });
 
 class CustomDrawer extends React.Component {
@@ -37,37 +36,21 @@ class CustomDrawer extends React.Component {
         })
     }
 
-
     render() {
         const { classes } = this.props;
 
         return (
-            <TitleProvider value={this.state}>
-                <div className={classes.root}>
-                    <CssBaseline />
-                    <MiniDrawer changeTitle={this.state.setTitle} />
-                    <div className={classes.mainContent}>
-                        <AppBar position="static">
-                            <Toolbar>
-                                <TitleConsumer>
-                                    {
-                                        context => (<Typography variant="h6" color="inherit" noWrap>
-                                            {
-                                                context.toolbarTitle
-                                            }
-                                        </Typography>)
-                                    }
-                                </TitleConsumer>
-                            </Toolbar>
-                        </AppBar>
-                        <main className={classes.content}>
-                            {
-                                this.props.body
-                            }
-                        </main>
-                    </div>
+            <div className={classes.root}>
+                <CssBaseline />
+                <MiniDrawer changeTitle={this.state.setTitle} />
+                <div className={classes.mainContent}>
+                    <main className={classes.content}>
+                        {
+                            this.props.body
+                        }
+                    </main>
                 </div>
-            </TitleProvider>
+            </div>
         );
     }
 }

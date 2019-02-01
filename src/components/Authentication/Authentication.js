@@ -1,7 +1,7 @@
 import React from 'react';
 import { Mutation } from 'react-apollo'
 import { AUTH_TOKEN } from '../../Utils/Constans/Communication';
-import { LOGIN_MUTATION, SIGNUP_MUTATION } from './AuthenticationQuery';
+import { LOGIN_MUTATION, SIGNUP_MUTATION } from './AuthenticationMutations';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -114,12 +114,10 @@ class Authentication extends React.Component {
                                         mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
                                         variables={{ email, password, name }}
                                         onCompleted={data => this._confirm(data)}
-                                        onError={error => this.setState({
-                                            messageError: error
-                                        })}
+
                                     >
                                         {mutation => (
-                                            <Button variant="contained" color="primary" size="large" style={{ marginLeft: 'auto', color: 'white' }} onClick={mutation}>
+                                            <Button variant="contained" color="secondary" size="large" style={{ marginLeft: 'auto', color: 'white' }} onClick={mutation}>
                                                 {login ? 'LOGIN' : 'CREATE ACCOUNT'}
                                             </Button>
                                         )}
