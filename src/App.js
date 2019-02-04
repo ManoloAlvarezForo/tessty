@@ -4,6 +4,7 @@ import Routes from './Routes/Routes';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { BrowserRouter as Router } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import indigo from '@material-ui/core/colors/blueGrey';
 
 const theme = createMuiTheme({
   // overrides: {
@@ -23,21 +24,31 @@ const theme = createMuiTheme({
   //   },
   // },
   palette: {
-    // type: 'dark',
+    background: {
+      paper: '#414755',
+      default: '#313640',
+  },
+  type: 'dark',
+//  background:{  
+//     paper:"rgba(239, 239, 239, 1)",
+//     // default:"rgba(255, 255, 255, 1)"
+//  },
     primary: {
       // light: will be calculated from palette.primary.main,
       main: '#13b9cc',
-      // main: '#F3663B', Orange.
-      // main: '#03A9F4', Blue convination.
-      // dark: 
-      // contrastText: will be calculated to contrast with palette.primary.main
     },
     secondary: {
-      light: '#0066ff',
-      main: '#0044ff',
-      // dark: will be calculated from palette.secondary.main,
-      contrastText: '#ffcc00',
+      main: '#13b9cc',
     },
+    default: {
+      main: '#383A47'
+    },
+  //   text:{  
+  //     primary:"#f5f5f5",
+  //     secondary:"#080808",
+  //     disabled:"rgba(247, 247, 247, 0.38)",
+  //     hint:"rgba(240, 234, 234, 0.38)"
+  //  }
 
     // error: will use the default color
   },

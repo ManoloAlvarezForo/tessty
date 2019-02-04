@@ -11,7 +11,7 @@ export const AuthRoute = ({ component: Component, container: CustomContainer, ..
         <Route {...rest} render={(props) => (
             isAuthenticated() === true
                 ? <CustomContainer body={<Component {...props} />} />
-                : <Redirect to="/authentication" />
+                : <Redirect to="/access" />
         )} />
     )
 }

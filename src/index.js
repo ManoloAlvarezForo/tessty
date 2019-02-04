@@ -15,16 +15,16 @@ import { onError } from "apollo-link-error";
 import { AUTH_TOKEN, GRAPHQL_URL } from './Utils/Constans/Communication';
 
 
-const linkError = onError(({ graphQLErrors, networkError }) => {
-    if (graphQLErrors)
-        graphQLErrors.map(({ message, locations, path }) =>
-            console.log(
-                `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-            ),
-        );
+// const linkError = onError(({ graphQLErrors, networkError }) => {
+//     if (graphQLErrors)
+//         graphQLErrors.map(({ message, locations, path }) =>
+//             console.log(
+//                 `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+//             ),
+//         );
 
-    if (networkError) console.log(`[Network error]: ${networkError}`);
-});
+//     if (networkError) console.log(`[Network error]: ${networkError}`);
+// });
 
 const httpLink = createHttpLink({
     uri: GRAPHQL_URL,
@@ -43,8 +43,9 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-    link: authLink.concat(httpLink, linkError),
-    cache: new InMemoryCache()
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache({addTypename: false}),
+    
 });
 
 ReactDOM.render(

@@ -11,7 +11,7 @@ import { FiUsers } from 'react-icons/fi';
 import { FiSettings } from 'react-icons/fi';
 import { FiClipboard } from 'react-icons/fi';
 import { FiList } from 'react-icons/fi';
-import {TitleConsumer} from '../../Context/TitleContext';
+import { TitleConsumer } from '../../Context/TitleContext';
 
 const styles = {
     fontSize: {
@@ -33,17 +33,17 @@ const options = [
     {
         name: 'Settings',
         icon: <FiSettings style={styles.fontSize} />,
-        path: 'none'
+        path: '/settings'
     },
     {
         name: 'Template',
         icon: <FiClipboard style={styles.fontSize} />,
-        path: 'none'
+        path: '/template'
     },
     {
         name: 'Topics',
         icon: <FiList style={styles.fontSize} />,
-        path: 'none'
+        path: 'topics'
     }
 ]
 
@@ -53,10 +53,9 @@ class DrawerDataList extends React.Component {
         selectedItem: this.props.history.location.pathname,
     };
 
-    handleListItemClick = (event, option, contextState) => {
-        this.setState({ selectedItem: option.path});
+    handleListItemClick = (_, option, ) => {
+        this.setState({ selectedItem: option.path });
         this.props.history.push(option.path)
-        contextState.setTitle(option.name);
     };
 
     componentDidMount() {
@@ -71,20 +70,20 @@ class DrawerDataList extends React.Component {
                 <List>
                     {options.map((option, index) => (
                         <TitleConsumer key={index}>
-                           {
-                               context => (
-                                <ListItem selected={this.state.selectedItem === option.path} button  onClick={event => this.handleListItemClick(event, option, context)}>
-                                <ListItemIcon>
-                                    {
-                                        option.icon
-                                    }
-                                </ListItemIcon>
-                                <ListItemText primary={option.name} />
-                            </ListItem>
-                               )
-                           }
+                            {
+                                context => (
+                                    <ListItem selected={this.state.selectedItem === option.path} button onClick={event => this.handleListItemClick(event, option, context)}>
+                                        <ListItemIcon>
+                                            {
+                                                option.icon
+                                            }
+                                        </ListItemIcon>
+                                        <ListItemText primary={option.name} />
+                                    </ListItem>
+                                )
+                            }
                         </TitleConsumer>
-                        
+
                     ))}
                 </List>
             </React.Fragment>

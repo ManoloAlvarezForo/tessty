@@ -10,7 +10,7 @@ module.exports = () => (
     plugins: [
       new CleanWebpackPlugin(["./../dist/"]),
       new HtmlWebpackPlugin({
-        title: "Flyer Cart",
+        title: "Tessty",
         template: path.resolve(__dirname, "../public/index.html")
       })
     ]
