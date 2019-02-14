@@ -6,34 +6,40 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import { FiSearch, FiPlus } from 'react-icons/fi';
 import InputBase from '@material-ui/core/InputBase';
 import { Button, Fab } from '@material-ui/core';
+import {ToolBarOptionsProvider} from '../../Context/ToolBarOptionsContext'
 
-class ApplicantsToolBar extends React.Component {
+class AdditionalComponent extends React.Component {
+    render() {
+        return(
+            <Button variant="contained" size="medium" color="primary">
+                <FiPlus style={{ margin: '0 5px' }} /> Add applicant
+                    </Button>
+        )
+    }
+}
+
+class CustomToolBar extends React.Component {
+
+    
+
+    _openContentDialog = () => {
+        // this.props.clearApplicantSelectedId();
+        this.props.openDialog('content', true)
+        this.props.handleDialog('isNewApplicant', true)
+    }
 
     render() {
-        const { classes } = this.props;
+        const { classes, additional } = this.props;
+        // const AdditionalComponent = this.state.additional
         return (
-            <Toolbar className="box-shadow-default" style={{ width: '100%' }} >
+                <Toolbar className="box-shadow-default" style={{ width: '100%', backgroundColor: '#6a738a' }} >
                 <Typography variant="h6" style={{ color: 'white' }} noWrap>
                     {this.props.title}
                 </Typography>
-                <div className={classes.grow} />
-                <div className={classes.search}>
-                    <div className={classes.searchIcon}>
-                        <FiSearch />
-                    </div>
-                    <InputBase
-                        placeholder="Search…"
-                        classes={{
-                            root: classes.inputRoot,
-                            input: classes.inputInput,
-                        }}
-                    />
-                </div>
-                <div style={{ display: 'flex' }}>
-                    <Button style={{ marginLeft: '20px', color: 'white' }} onClick={() => this.props.openDialog('content', true)} variant="contained" size="medium" color="primary">
-                        <FiPlus style={{ margin: '0 5px' }} /> Add applicant
-                    </Button>
-                </div>
+                {
+                    additional
+                }
+                
             </Toolbar>
         )
     }
@@ -112,4 +118,4 @@ const styles = theme => ({
     },
 });
 
-export default withStyles(styles, { withTheme: true })(ApplicantsToolBar);
+export default withStyles(styles, { withTheme: true })(CustomToolBar);

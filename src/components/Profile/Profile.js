@@ -1,13 +1,13 @@
 import React from 'react';
 
-class Dashboard extends React.Component {
+class Profile extends React.Component {
     render() {
         return (
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                Dashboard
+               Profile
             </div>
         );
     }
 }
 
-export default Dashboard;
+export default Profile;
