@@ -30,8 +30,8 @@ const theme = createMuiTheme({
   },
   type: 'dark',
 //  background:{  
-//     paper:"rgba(239, 239, 239, 1)",
-//     // default:"rgba(255, 255, 255, 1)"
+//     default:"rgba(239, 239, 239, 1)",
+//     paper:"rgb(197, 197, 197)"
 //  },
     primary: {
       // light: will be calculated from palette.primary.main,

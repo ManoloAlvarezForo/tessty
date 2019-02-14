@@ -7,11 +7,79 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import { FiChevronLeft } from 'react-icons/fi';
-import DrawerDataList from './DrawerDataList';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import UserProfileItem from './UserProfileItem';
+import DrawerList from './DrawerList';
 
 const DRAWER_WIDTH = 220;
+
+class MiniDrawer extends React.Component {
+    state = {
+        open: true
+    };
+
+    handleDrawer = () => {
+        this.setState({ open: !this.state.open })
+    }
+
+    render() {
+        const { classes } = this.props;
+        return (
+            <Drawer
+                variant="permanent"
+                className={classNames(classes.drawer, {
+                    [classes.drawerOpen]: this.state.open,
+                    [classes.drawerClose]: !this.state.open,
+                })}
+                classes={{
+                    paper: classNames({
+                        [classes.paper]: 'relative',
+                        [classes.drawerOpen]: this.state.open,
+                        [classes.drawerClose]: !this.state.open
+                    }),
+                }}
+                open={this.state.open}
+            >
+                <div className={classes.toolbar} style={{ display: 'flex', justifyContent: 'center' }}>
+                    <AppBar style={{ backgroundColor: 'inherit' }} position="static">
+                        <Toolbar style={{ padding: '0', marginRight: '5px' }} >
+                            <div style={{ display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'center' }}>
+                                {
+                                    this.state.open ?
+                                        (<div style={{ justifyContent: 'center', width: '100%', display: 'flex', alignItems: 'center' }}>
+                                            <Typography style={{ fontFamily: 'Pacifico Regular', fontSize: '1.8rem', fontWeight: 'normal' }} component="h4" variant="h4">{this.state.open ? 'Tessty' : 'Te'}</Typography>
+                                        </div>) :
+                                        (<div style={{ cursor: 'pointer' }} onClick={this.handleDrawer}>
+                                            <div style={{ textAlign: 'center' }}>
+                                                <Typography style={{ fontFamily: 'Pacifico Regular', fontSize: '1.5rem', fontWeight: 'normal' }} variant="h4">Te</Typography>
+                                            </div>
+                                        </div>)
+                                }
+                                {
+                                    this.state.open && (
+                                        <IconButton style={{ marginLeft: 'auto' }}
+                                            color="inherit"
+                                            aria-label="Open drawer"
+                                            onClick={this.handleDrawer}
+                                            className={classNames({
+                                                [classes.hide]: !this.state.open,
+                                            })}
+                                        >
+                                            <FiChevronLeft color="gray" />
+                                        </IconButton>
+                                    )
+                                }
+                            </div>
+                        </Toolbar>
+                    </AppBar>
+                </div>
+                <Divider />
+                <DrawerList changeTitle={this.props.changeTitle} />
+            </Drawer>
+        )
+    }
+}
 
 const styles = theme => ({
     root: {
@@ -62,6 +130,9 @@ const styles = theme => ({
             width: theme.spacing.unit * 7 + 1,
         },
     },
+    paper: {
+        position: 'relative'
+    },
     toolbar: {
         display: 'flex',
         alignItems: 'center',
@@ -71,73 +142,6 @@ const styles = theme => ({
     }
 });
 
-
-
-class MiniDrawer extends React.Component {
-    state = {
-        open: true
-    };
-
-    handleDrawer = () => {
-        this.setState({ open: !this.state.open })
-    }
-
-    render() {
-        const { classes } = this.props;
-        return (
-            <Drawer
-                variant="permanent"
-                className={classNames(classes.drawer, {
-                    [classes.drawerOpen]: this.state.open,
-                    [classes.drawerClose]: !this.state.open,
-                })}
-                classes={{
-                    paper: classNames({
-                        [classes.drawerOpen]: this.state.open,
-                        [classes.drawerClose]: !this.state.open,
-                    }),
-                }}
-                open={this.state.open}
-            >
-                <div className={classes.toolbar} style={{ display: 'flex', justifyContent: 'center' }}>
-                    <AppBar style={{ backgroundColor: 'inherit' }} position="static">
-                        <Toolbar style={{ padding: '0', marginRight: '5px' }} >
-                            <div style={{ display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'center' }}>
-                                {
-                                    this.state.open ?
-                                        (<div style={{ justifyContent: 'center', width: '100%', display: 'flex', alignItems: 'center' }}>
-                                            <Typography style={{ fontFamily: 'Pacifico Regular', fontSize: '1.8rem', fontWeight: 'normal' }} component="h4" variant="h4">{this.state.open ? 'Tessty' : 'Te'}</Typography>
-                                        </div>) :
-                                        (<div style={{ cursor: 'pointer' }} onClick={this.handleDrawer}>
-                                            <div style={{ textAlign: 'center' }}>
-                                                <Typography style={{ fontFamily: 'Pacifico Regular', fontSize: '1.5rem', fontWeight: 'normal' }} variant="h4">Te</Typography>
-                                            </div>
-                                        </div>)
-                                }
-                                {
-                                    this.state.open && (
-                                        <IconButton style={{ marginLeft: 'auto' }}
-                                            color="inherit"
-                                            aria-label="Open drawer"
-                                            onClick={this.handleDrawer}
-                                            className={classNames({
-                                                [classes.hide]: !this.state.open,
-                                            })}
-                                        >
-                                            <FiChevronLeft color="gray"/>
-                                        </IconButton>
-                                    )
-                                }
-                            </div>
-                        </Toolbar>
-                    </AppBar>
-                </div>
-                <Divider />
-                <DrawerDataList changeTitle={this.props.changeTitle} />
-            </Drawer>
-        )
-    }
-}
 
 MiniDrawer.propTypes = {
     classes: PropTypes.object.isRequired,

@@ -1,9 +1,10 @@
 import React from 'react'
 import ApplicantList from './ApplicantList';
-import ApplicantDialogDetail from './ApplicantDialogDetail';
+// import ApplicantDialogDetail from './ApplicantDialogDetail';
 import ApplicantDialogContent from './ApplicantDialogContent';
-import ApplicantsToolBar from './ApplicantsToolBar';
+import ApplicantsToolBarOptions from './ApplicantsToolBarOptions';
 import CustomSnackBar from '../SnackBar/CustomSnackBar';
+import ApplicantDetail from '../Applicants/ApplicantDetail';
 
 class ApplicantsContainer extends React.Component {
 
@@ -16,13 +17,31 @@ class ApplicantsContainer extends React.Component {
         snackBarUpdatedMessage: 'Applicant was updated successfully.',
         snackBarAddedMessage: 'Applicant was added successfully.',
         applicantSelectedId: '',
+        isNewApplicant: false,
+        isDetailOpen: false,
+        listWidth: '50%',
+        detailWidth: '50%',
     }
 
     actionSelected = (applicantSelectedId) => {
         this.setState({
-            detail: true,
+            isDetailOpen: true,
+            listWidth: '50%',
+            detailWidth: '50%',
+            isNewApplicant: false,
             applicantSelectedId: applicantSelectedId
         })
+    }
+
+    componentDidMount() {
+        this.props.setAdditionalComponent(<ApplicantsToolBarOptions 
+        title={"Applicants"} 
+        openDialog={this._handleDialog} 
+        handleDialog={this._handleDialog}  />)
+    }
+
+    componentWillUnmount() {
+        this.props.setAdditionalComponent('');
     }
 
     _handleDialog = (property, value) => {
@@ -44,26 +63,27 @@ class ApplicantsContainer extends React.Component {
         })
     }
 
-    _clearApplicantSelectedId = () => {
-        this.setState({
-            applicantSelectedId: ''
-        })
-    }
-
     render() {
         return (
             <React.Fragment>
-                <ApplicantsToolBar title={"Applicants"} openDialog={this._handleDialog} />
-                <div style={{ overflow: 'auto', height: 'calc(100vh - 65px)' }}>
-                    <div style={{ margin: '0 10px' }}>
-                        <ApplicantList selectedAction={this.actionSelected} list={this.props.applicants} />
-                        <React.Fragment>
-                            <ApplicantDialogDetail
-                                isEnabled={this.state.detail}
-                                handleDialog={this._handleDialog}
-                                applicantSelectedId={this.state.applicantSelectedId}
-                                clearApplicantSelectedId={this._clearApplicantSelectedId}
+                <div >
+                    <div style={{ marginLeft: '5px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'row' }}>
+                            <ApplicantList
+                                width={this.state.isDetailOpen ? this.state.listWidth : '100%'}
+                                selectedAction={this.actionSelected}
+                                list={this.props.applicants}
                             />
+                            {
+                                this.state.isDetailOpen && (<ApplicantDetail
+                                    width={this.state.detailWidth}
+                                    handleDialog={this._handleDialog}
+                                    applicantSelectedId={this.state.applicantSelectedId}
+                                />
+                                )
+                            }
+                        </div>
+                        <React.Fragment>
                             <ApplicantDialogContent
                                 isEnabled={this.state.content}
                                 handleDialog={this._handleDialog}
@@ -71,14 +91,15 @@ class ApplicantsContainer extends React.Component {
                                 clearApplicantSelectedId={this._clearApplicantSelectedId}
                                 setValue={this._setValues}
                                 setSnackBar={this._setSnackBar}
+                                isNewApplicant={this.state.isNewApplicant}
                             />
                         </React.Fragment>
                     </div>
-                    <CustomSnackBar 
-                        openSnackBar={this.state.snackBar} 
+                    <CustomSnackBar
+                        openSnackBar={this.state.snackBar}
                         variant={this.state.snackBarCurrentVariant}
                         message={this.state.snackBarCurrentMessage}
-                        handleClose={() => this._setValues('snackBar', false)} 
+                        handleClose={() => this._setValues('snackBar', false)}
                     />
                 </div>
             </React.Fragment>

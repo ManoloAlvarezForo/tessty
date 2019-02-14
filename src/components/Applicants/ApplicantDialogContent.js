@@ -740,7 +740,9 @@ class ApplicantContent extends React.Component {
             update={(cache, data) => {
 
               let applicant = (this.state.id !== undefined) ? data.data.updateApplicant.applicant : data.data.addApplicant;
-              const { applicants } = cache.readQuery({ query: GET_APPLICANTS_BASIC });
+
+              let { applicants } = cache.readQuery({ query: GET_APPLICANTS_BASIC });
+
               const newApplicants = (this.state.id !== undefined) ? applicants.map(a => {
                 return (a.id === applicant.id) ? applicant : a
               }) :
@@ -750,6 +752,14 @@ class ApplicantContent extends React.Component {
                 query: GET_APPLICANTS_BASIC,
                 data: {
                   applicants: newApplicants
+                }
+              });
+              
+              cache.writeQuery({
+                query: GET_APPLICANT_BY_ID,
+                variables: {id: this.state.id},
+                data: {
+                  applicantById: applicant
                 }
               });
             }}
@@ -807,7 +817,12 @@ class NewApplicantDialog extends React.Component {
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Add Applicant</DialogTitle>
-        <ApplicantContent applicant={newApplicant} closeDialog={closeDialog} setValue={setValue} setSnackBar={setSnackBar}/>
+        <ApplicantContent 
+          applicant={newApplicant} 
+          closeDialog={closeDialog} 
+          setValue={setValue} 
+          setSnackBar={setSnackBar}
+        />
       </Dialog>
     )
   }
@@ -855,16 +870,16 @@ class ApplicantDialogContent extends React.Component {
 
   _closeDialog = () => {
     this.props.handleDialog('content', false);
-    this.props.clearApplicantSelectedId();
+    // this.props.clearApplicantSelectedId();
   }
 
   render() {
-    const { fullScreen, setValue, setSnackBar } = this.props;
+    const { fullScreen, setValue, setSnackBar, isNewApplicant } = this.props;
     const id = this.props.applicantSelectedId;
     return (
       <React.Fragment>
         {
-          (!id) ?
+          (isNewApplicant) ?
             <NewApplicantDialog 
               fullScreen={fullScreen} 
               closeDialog={this._closeDialog} 

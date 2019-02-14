@@ -114,18 +114,18 @@ const DetailItem = ({ value, icon }) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <div style={{ marginTop: '7px' }}>
-                {
-                    icon
-                }
+                <div style={{ marginTop: '7px' }}>
+                    {
+                        icon
+                    }
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '30px', justifyContent: 'center' }}>
+                    {
+                        evaluateValue(value)
+                    }
+                </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '30px', justifyContent: 'center' }}>
-                {
-                    evaluateValue(value)
-                }
-            </div>
-        </div>
-        <Divider style={{marginLeft: 0}} variant="inset"/>
+            <Divider style={{ marginLeft: 0 }} variant="inset" />
         </div>
     )
 }
@@ -154,12 +154,12 @@ const ApplicantDetailContent = ({ applicant }) => {
 class ApplicantDialogDetail extends React.Component {
 
     _closeDialog = () => {
-        this.props.handleDialog('detail', false);
-        this.props.clearApplicantSelectedId();
+        // this.props.handleDialog('detail', false);
+        // this.props.clearApplicantSelectedId();
     }
 
     _openDialog = () => {
-        this.props.handleDialog('detail', false);
+        // this.props.handleDialog('detail', false);
         this.props.handleDialog('content', true);
     }
 
@@ -167,7 +167,7 @@ class ApplicantDialogDetail extends React.Component {
         const { fullScreen } = this.props;
         const id = this.props.applicantSelectedId
         return (
-            <Query query={GET_APPLICANT_BY_ID} variables={{ id }} skip={id === ""} fetchPolicy="network-only">
+            <Query query={GET_APPLICANT_BY_ID} variables={{ id }} skip={id === ""} fetchPolicy="cache-and-network">
                 {({ loading, error, data }) => {
                     if (loading) return <div>Loading...</div>
                     if (error) return `Error!: ${error}`
@@ -194,7 +194,6 @@ class ApplicantDialogDetail extends React.Component {
                                 <ApplicantDetailContent applicant={data.applicantById} />
                             </Dialog>
                         )
-
                     )
                 }}
             </Query>
