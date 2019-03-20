@@ -6,13 +6,14 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import { FiSearch, FiPlus } from 'react-icons/fi';
 import InputBase from '@material-ui/core/InputBase';
 import { Button, Fab } from '@material-ui/core';
+import CustomToolBar from '../CustomToolBar/CustomToolBar';
 
 class ApplicantsToolBarOptions extends React.Component {
 
     _openContentDialog = () => {
         // this.props.clearApplicantSelectedId();
-        this.props.openDialog('content', true)
-        this.props.handleDialog('isNewApplicant', true)
+        this.props.setValues('content', true)
+        this.props.setValues('isNewApplicant', true)
     }
 
     render() {

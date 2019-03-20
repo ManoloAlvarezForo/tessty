@@ -1,16 +1,16 @@
 import React from 'react';
-import CustomToolBar from '../CustomToolBar/CustomToolBar'
+import CustomToolBar from '../CustomToolBar/CustomToolBar';
 import UnderConstruction from '../UnderConstruction/UnderConstruction';
 
-class Profile extends React.Component {
+class Notifications extends React.Component {
     render() {
         return (
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <CustomToolBar title="Profile" />
+                <CustomToolBar title="Notifications"/>
                 <UnderConstruction />
             </div>
         );
     }
 }
 
-export default Profile;
+export default Notifications;

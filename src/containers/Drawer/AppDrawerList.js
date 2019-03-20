@@ -36,7 +36,7 @@ const options = [
         name: 'Settings',
         variant: 'settings',
         path: '/settings'
-    },
+    }
     // {
     //     name: 'Template',
     //     variant: 'template',

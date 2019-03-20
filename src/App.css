@@ -55,6 +55,7 @@ body {
   margin: unset;
 }
 
+/* Css copy from Web Whatsapp app */
 ._3dqpi {
   position: relative;
 }
@@ -72,6 +73,8 @@ body {
     border-radius: 4px; 
   } 
 }
+/* END Css copy from Web Whatsapp app */
+
 
 .custom-input > input {
   margin: 5px 0;
@@ -179,22 +182,25 @@ background: #9E9E9E;
   background-image: var(--main-gradient-background)
 }
 
-
-/* Animation react */
-.example-enter {
-  opacity: 0.01;
+.tile-calendar {
+  cursor: pointer;
 }
 
-.example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
+.tile-calendar:hover {
+  background-color: rgba(106, 115, 138, 0.13);
 }
 
-.example-leave {
-  opacity: 1;
+.event-calendar {
+  cursor: pointer;
+  background-color: rgb(15, 168, 187);
+  border-left: 7px solid rgb(106, 115, 138);
 }
 
-.example-leave.example-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
+.event-calendar:hover {
+  background-color: #13b9cc;
+  border-radius: 3px;
+}
+
+.dialog-height {
+  height: 650px;
 }

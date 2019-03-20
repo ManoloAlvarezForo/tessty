@@ -5,7 +5,12 @@ module.exports = () => ({
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
+        include: /node_modules/,
+        use: ['react-hot-loader/webpack'],
+      },
+      {
+        test: /\.(js)$/,
         exclude: /node_modules/,
         loader: "babel-loader",
         options: { presets: ["@babel/env", "@babel/preset-react"]
@@ -26,7 +31,10 @@ module.exports = () => ({
     }
     ]
   },
-  resolve: { extensions: ["*",".mjs", ".js", ".jsx"] }, // <-- extension for .mjs to graphql shodl be before the other extension.
+  resolve: {
+    extensions: ["*", ".mjs", ".js", ".jsx"]
+  }, // <-- extension for .mjs to graphql shodl be before the other extension.
+
   output: {
     path: path.resolve(__dirname, "./../dist/"),
     publicPath: "./../dist/",

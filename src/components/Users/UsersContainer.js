@@ -1,5 +1,6 @@
 import React from 'react'
 import UserList from './UsersList';
+import CustomToolBar from '../CustomToolBar/CustomToolBar';
 
 export default class UsersContainer extends React.Component {
     state = {
@@ -15,6 +16,7 @@ export default class UsersContainer extends React.Component {
         return (
             <React.Fragment>
                 <div >
+                    <CustomToolBar title="Users"/>
                     <div style={{ marginLeft: '5px' }}>
                         <div style={{ display: 'flex', flexDirection: 'row' }}>
                             <UserList

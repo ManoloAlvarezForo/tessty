@@ -43,7 +43,7 @@ class MiniDrawer extends React.Component {
             >
                 <div className={classes.toolbar} style={{ display: 'flex', justifyContent: 'center' }}>
                     <AppBar style={{ backgroundColor: 'inherit' }} position="static">
-                        <Toolbar style={{ padding: '0', marginRight: '5px' }} >
+                        <Toolbar style={{ padding: '0', backgroundColor: 'rebeccapurple' }} >
                             <div style={{ display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'center' }}>
                                 {
                                     this.state.open ?

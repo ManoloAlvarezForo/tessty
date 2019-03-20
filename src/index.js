@@ -5,7 +5,7 @@ import "./App.css";
 import App from "./App.js";
 
 //Graphql
-import { ApolloClient } from 'apollo-client';
+import { ApolloClient } from 'apollo-boost';
 import { createHttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -44,8 +44,8 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
     link: authLink.concat(httpLink),
-    cache: new InMemoryCache({addTypename: false}),
-    
+    cache: new InMemoryCache({ addTypename: false }),
+
 });
 
 ReactDOM.render(
