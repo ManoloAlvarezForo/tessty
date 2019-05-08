@@ -3,6 +3,7 @@ import ApplicantList from './ApplicantList';
 // import ApplicantDialogDetail from './ApplicantDialogDetail';
 import ApplicantDialogContent from './ApplicantDialogContent';
 import ApplicantsToolBarOptions from './ApplicantsToolBarOptions';
+import CustomToolBar from '../CustomToolBar/CustomToolBar';
 import CustomSnackBar from '../SnackBar/CustomSnackBar';
 import ApplicantDetail from '../Applicants/ApplicantDetail';
 
@@ -33,17 +34,6 @@ class ApplicantsContainer extends React.Component {
         })
     }
 
-    componentDidMount() {
-        this.props.setAdditionalComponent(<ApplicantsToolBarOptions 
-        title={"Applicants"} 
-        openDialog={this._handleDialog} 
-        handleDialog={this._handleDialog}  />)
-    }
-
-    componentWillUnmount() {
-        this.props.setAdditionalComponent('');
-    }
-
     _handleDialog = (property, value) => {
         this.setState({
             [property]: value
@@ -66,7 +56,8 @@ class ApplicantsContainer extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div >
+                <div styles={{display: 'flex', flexDirection: 'column'}}>
+                    <CustomToolBar title='Applicants' additional={<ApplicantsToolBarOptions setValues={this._setValues} />} />
                     <div style={{ marginLeft: '5px' }}>
                         <div style={{ display: 'flex', flexDirection: 'row' }}>
                             <ApplicantList

@@ -3,7 +3,7 @@ import { GET_APPLICANTS_BASIC } from './ApplicantsQueries'
 import { Query } from "react-apollo";
 import ApplicantsContainer from './ApplicantsContainer';
 
-const ApplicantsMain = ({setAdditionalComponent}) => (
+const ApplicantsMain = () => (
   <Query query={GET_APPLICANTS_BASIC}  >
     {({ loading, error, data }) => {
       if (loading) return <div>Loading...</div>
@@ -11,10 +11,7 @@ const ApplicantsMain = ({setAdditionalComponent}) => (
       return (
         data.applicants.length === 0 ?
           <div>NO DATA</div> :
-          <ApplicantsContainer 
-            setAdditionalComponent={setAdditionalComponent} 
-            applicants={data.applicants} 
-          />
+          <ApplicantsContainer applicants={data.applicants} />
       )
     }}
   </Query>
@@ -23,7 +20,9 @@ const ApplicantsMain = ({setAdditionalComponent}) => (
 export default class Applicants extends React.Component {
   render() {
     return (
-        <ApplicantsMain setAdditionalComponent={this.props.setAdditionalComponent} />
+        <ApplicantsMain />
     )
   }
 }
+
+// TODO: Separate Components for ApplicantsContainer and ApplicantDialogContent

@@ -8,10 +8,11 @@ module.exports = () => (
     mode: "development",
     devtool: "source-map",
     devServer: {
+      host: '192.168.88.170',
       historyApiFallback: true,
       contentBase: path.join(__dirname, "../public/"),
       port: 3000,
-      publicPath: "http://localhost:3000/dist/",
+      publicPath: "http://192.168.88.170:3000/dist/",
       hotOnly: true
     },
     plugins: [new webpack.HotModuleReplacementPlugin()]

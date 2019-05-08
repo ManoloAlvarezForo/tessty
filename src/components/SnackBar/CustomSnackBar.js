@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Button from '@material-ui/core/Button';
 import {FiCheckCircle, FiAlertCircle, FiInfo, FiX, FiAlertTriangle} from 'react-icons/fi';
-import green from '@material-ui/core/colors/green';
 import amber from '@material-ui/core/colors/amber';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -101,7 +99,7 @@ class CustomSnackbar extends React.Component {
                 <Snackbar
                     anchorOrigin={{
                         vertical: 'bottom',
-                        horizontal: 'right',
+                        horizontal: 'center',
                     }}
                     open={this.props.openSnackBar}
                     autoHideDuration={4000}

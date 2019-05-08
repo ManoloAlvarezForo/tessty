@@ -1,6 +1,6 @@
 import React from 'react'
 //Icons
-import { FiUsers, FiLogOut, FiUser } from 'react-icons/fi';
+import { FiUsers, FiLogOut, FiCalendar } from 'react-icons/fi';
 import { MdNotificationsNone } from "react-icons/md";
 import ListItemWithIcon from './ListItemWithIcon';
 
@@ -12,6 +12,7 @@ const styles = {
 
 const iconList = {
     users: FiUsers,
+    scheduler: FiCalendar,
     notifications: MdNotificationsNone,
     logout: FiLogOut
 }
@@ -21,6 +22,11 @@ const options = [
         name: 'Users',
         variant: 'users',
         path: '/users'
+    },
+    {
+        name: 'Scheduler',
+        variant: 'scheduler',
+        path: '/scheduler'
     },
     {
         name: 'Notifications',

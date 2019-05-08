@@ -140,7 +140,7 @@ class ApplicantDetail extends React.Component {
                     if (error) return `Error!: ${error}`
                     return (
                         data !== undefined && (
-                            <Paper style={{ width: this.props.width }} elevation={1}>
+                            <Paper style={{ width: this.props.width, margin: '5px', height: 'calc(100vh - 107px)' }} elevation={1}>
                                 <div style={{ margin: '10px' }}>
                                     <div style={{ display: 'flex', flexDirection: 'row' }}>
                                         <div style={{ alignSelf: 'center' }}>

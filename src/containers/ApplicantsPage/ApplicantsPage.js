@@ -7,7 +7,7 @@ class ApplicantsPage extends React.Component {
     }
     render() {
         return (
-            <Applicants setAdditionalComponent={this.props.context.setAdditionalComponent} title="Applicants" />
+            <Applicants />
         )
     }
 }

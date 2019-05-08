@@ -60,3 +60,14 @@ export const GET_APPLICANT_BY_ID = gql`
     }
   }
 `
+
+export const GET_APPLICANTS_BY_FILTER = gql`
+  query getApplicantsByFilter($query: String) {
+    applicantsByFilter(query: $query){
+        id,
+        name,
+        lastName,
+        avatar
+    }
+  }
+`

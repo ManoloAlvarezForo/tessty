@@ -35,28 +35,28 @@ const fieldWithValidation = (WrappedComponent) => {
         errorMessage: ""
       }
     }
-  
+
     componentDidMount() {
       this._executeValidation(this.props.value);
     }
-  
+
     _executeValidation = (value) => {
       if (this.props.validator) {
         const resValidator = this.props.validator({ text: value, errorMessage: '', error: false });
         const propertyName = `${this.props.property}Error`
         this.props.setValues({ [propertyName]: resValidator.error })
         this.props.evaluateErrorInData();
-  
+
         this.setState({
           error: resValidator.error,
           errorMessage: resValidator.errorMessage
         })
       }
     }
-  
+
     _onChangeLocal = (e) => {
       this._executeValidation(e.target.value)
-  
+
       if (this.props.handleChange) {
         this.props.handleChange(e)
       }
@@ -70,7 +70,7 @@ const fieldWithValidation = (WrappedComponent) => {
 
 class TextFielWithValidation extends React.Component {
   render() {
-    const { value, label, name, styles, error, errorMessage, onChange, isRequired} = this.props
+    const { value, label, name, styles, error, errorMessage, onChange, isRequired } = this.props
 
     return (
       <TextField style={styles}
@@ -101,7 +101,7 @@ class ApplicantFullName extends React.Component {
               <Avatar src={avatar} style={{ margin: '0 8px', width: 60, height: 60 }}></Avatar>
           }
         </div>
-        <ApplicantTextFieldWithValidation styles={{marginTop: '4px', marginLeft: '5px',  marginRight: '5px', width: FIELD_WIDTH, display: 'flex' }}
+        <ApplicantTextFieldWithValidation styles={{ marginTop: '4px', marginLeft: '5px', marginRight: '5px', width: FIELD_WIDTH, display: 'flex' }}
           validator={validator}
           handleChange={handleChange}
           value={name}
@@ -112,7 +112,7 @@ class ApplicantFullName extends React.Component {
           evaluateErrorInData={evaluateErrorInData}
           isRequired
         />
-        <ApplicantTextFieldWithValidation styles={{marginTop: '4px', marginRight: '5px', width: FIELD_WIDTH, display: 'flex'}}
+        <ApplicantTextFieldWithValidation styles={{ marginTop: '4px', marginRight: '5px', width: FIELD_WIDTH, display: 'flex' }}
           validator={validator}
           handleChange={handleChange}
           value={lastName}
@@ -183,13 +183,13 @@ class ApplicantListField extends React.Component {
 
   render() {
 
-    const { 
-      isTheLastItem, 
-      validator, 
-      keyWord, 
-      setValues, 
-      listName, 
-      evaluateErrorInData, 
+    const {
+      isTheLastItem,
+      validator,
+      keyWord,
+      setValues,
+      listName,
+      evaluateErrorInData,
       isRequired,
       firstByDefault
     } = this.props
@@ -213,7 +213,7 @@ class ApplicantListField extends React.Component {
         />
         {
           value !== "" && (<React.Fragment>
-            <SelectFieldWithValidation styles={{ width: FIELD_WIDTH, marginRight: '5px'}}
+            <SelectFieldWithValidation styles={{ width: FIELD_WIDTH, marginRight: '5px' }}
               value={this.state.label}
               property="label"
               handleChange={(e) => this._handleChange(e)}
@@ -320,8 +320,8 @@ class SelectField extends React.Component {
   }
 
   render() {
-    const { 
-      styles, 
+    const {
+      styles,
       value,
       property,
       onChange,
@@ -379,15 +379,15 @@ class ApplicantSelectField extends React.Component {
   render() {
     const { icon, setValues, handleChange, value, validator, evaluateErrorInData, isRequired } = this.props
     return (
-      <div style={{ display: 'flex', flexDirection: 'row', width: '100%'}}>
+      <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
         <div style={{ margin: '0 12px', display: 'flex', alignItems: 'flex-start' }}>
           {
             icon
           }
         </div>
         <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
-          <SelectFieldWithValidation styles={{ width: FIELD_WIDTH_X2, margin: '7px 0'  }} 
-            value={value} 
+          <SelectFieldWithValidation styles={{ width: FIELD_WIDTH_X2, margin: '7px 0' }}
+            value={value}
             property={this.props.property}
             handleChange={handleChange}
             menuList={this.state.menuList}
@@ -411,7 +411,7 @@ class ApplincantTextField extends React.Component {
   render() {
     const { icon, name, handleChange, text, setValues, validator, evaluateErrorInData } = this.props;
     return (
-      <div style={{ display: 'flex', flexDirection: 'row', width: '100%'}}>
+      <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
         <div style={{ margin: '0 12px', display: 'flex', alignItems: 'flex-start' }}>
           {
             icon
@@ -428,7 +428,7 @@ class ApplincantTextField extends React.Component {
           setValues={setValues}
           evaluateErrorInData={evaluateErrorInData}
         />
-       </div>
+      </div>
     )
   }
 }
@@ -466,7 +466,7 @@ class ApplicantContent extends React.Component {
     positionMenuList: ['Developer', 'QA', 'QA/Automation', 'Automation', 'Dev Ops'],
     errorInData: false,
     hasChanges: false,
-    realPhones: { 
+    realPhones: {
       list: [],
     },
     realMails: {
@@ -498,12 +498,12 @@ class ApplicantContent extends React.Component {
   }
 
   _evaluateErrorInData = () => {
-    const error = (this.state.nameError === false && 
-                this.state.lastNameError === false && 
-                this.state.mailsError === false && 
-                this.state.phonesError === false && 
-                this.state.accountsError === false && 
-                this.state.addressError === false) ? false: true;
+    const error = (this.state.nameError === false &&
+      this.state.lastNameError === false &&
+      this.state.mailsError === false &&
+      this.state.phonesError === false &&
+      this.state.accountsError === false &&
+      this.state.addressError === false) ? false : true;
     this.setState({
       errorInData: error
     })
@@ -528,8 +528,8 @@ class ApplicantContent extends React.Component {
       }
 
       if (data.addApplicant) {
-        this.props.setSnackBar('success', 'snackBarAddedMessage') 
-      
+        this.props.setSnackBar('success', 'snackBarAddedMessage')
+
       }
       this.props.setValue('snackBar', true);
     }
@@ -552,7 +552,8 @@ class ApplicantContent extends React.Component {
 
     this.setState({
       [listName]: { list: newList }
-      , hasChanges: true }, () => {
+      , hasChanges: true
+    }, () => {
       if (this.state[listName].list.length === 0) {
         this._addToList(listName)
       }
@@ -562,11 +563,11 @@ class ApplicantContent extends React.Component {
   _createNewItemFactory = (listName) => {
     let newItem = {};
     switch (listName) {
-      case 'phones': newItem = { number: '', label: ''}
+      case 'phones': newItem = { number: '', label: '' }
         break;
-      case 'mails': newItem = { mail: '', label: ''}
+      case 'mails': newItem = { mail: '', label: '' }
         break;
-      case 'accounts': newItem = { account: '', label: ''}
+      case 'accounts': newItem = { account: '', label: '' }
         break;
       default:
         break;
@@ -579,7 +580,8 @@ class ApplicantContent extends React.Component {
     const newList = this.state[listName].list.concat(this._createNewItemFactory(listName));
     this.setState({
       [listName]: { list: newList }
-      , hasChanges: true})
+      , hasChanges: true
+    })
   }
 
   _cleanDataModel = async () => {
@@ -604,7 +606,7 @@ class ApplicantContent extends React.Component {
     }
 
     if (this.state.accounts.list.length >= 1 && (this.state.accounts.list[0].account !== "" && this.state.accounts.list[0].label !== "")) {
-      await  this.setState({
+      await this.setState({
         realAccounts: this.state.accounts
       })
     } else {
@@ -615,7 +617,7 @@ class ApplicantContent extends React.Component {
   }
 
 
-  _mutationSave = async (mutationFn, variables) => {
+  _mutationSave = async (mutationFn) => {
     await this._cleanDataModel();
     await mutationFn();
   }
@@ -700,7 +702,7 @@ class ApplicantContent extends React.Component {
               handleChange={this.handleChange}
               setValues={this.setValues}
               evaluateErrorInData={this._evaluateErrorInData}
-              // validator={compose(emptyTextValidator)}
+            // validator={compose(emptyTextValidator)}
             />
           </div>
         </DialogContent>
@@ -711,7 +713,7 @@ class ApplicantContent extends React.Component {
 
           <Mutation
             mutation={this.state.id !== undefined ? UPDATE_APPLICANT : ADD_APPLICANT}
-            variables={ this.state.id !== undefined ? {
+            variables={this.state.id !== undefined ? {
               applicantToUpdate: {
                 id: this.state.id,
                 name: this.state.name,
@@ -724,19 +726,19 @@ class ApplicantContent extends React.Component {
                 address: this.state.address,
               }
             } :
-            {
-              applicant: {
-                name: this.state.name,
-                lastName: this.state.lastName,
-                avatar: this.state.avatar,
-                phones: this.state.realPhones,
-                mails: this.state.realMails,
-                accounts: this.state.realAccounts,
-                position: this.state.position,
-                address: this.state.address,
+              {
+                applicant: {
+                  name: this.state.name,
+                  lastName: this.state.lastName,
+                  avatar: this.state.avatar,
+                  phones: this.state.realPhones,
+                  mails: this.state.realMails,
+                  accounts: this.state.realAccounts,
+                  position: this.state.position,
+                  address: this.state.address,
+                }
               }
             }
-          }
             update={(cache, data) => {
 
               let applicant = (this.state.id !== undefined) ? data.data.updateApplicant.applicant : data.data.addApplicant;
@@ -746,7 +748,7 @@ class ApplicantContent extends React.Component {
               const newApplicants = (this.state.id !== undefined) ? applicants.map(a => {
                 return (a.id === applicant.id) ? applicant : a
               }) :
-              applicants.concat([applicant]);
+                applicants.concat([applicant]);
 
               cache.writeQuery({
                 query: GET_APPLICANTS_BASIC,
@@ -754,10 +756,10 @@ class ApplicantContent extends React.Component {
                   applicants: newApplicants
                 }
               });
-              
+
               cache.writeQuery({
                 query: GET_APPLICANT_BY_ID,
-                variables: {id: this.state.id},
+                variables: { id: this.state.id },
                 data: {
                   applicantById: applicant
                 }
@@ -766,21 +768,21 @@ class ApplicantContent extends React.Component {
 
             onCompleted={data => this._confirmSaveData(data)}
           >
-            { save => (
+            {save => (
               id !== undefined ?
-              <Button 
-                disabled={errorInData || !this.state.hasChanges} 
-                variant="contained" 
-                color="secondary" 
-                onClick={() => this._mutationSave(save)}>
+                <Button
+                  disabled={errorInData || !this.state.hasChanges}
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => this._mutationSave(save)}>
                   Save
               </Button>
-              :
-              <Button 
-                disabled={errorInData || !this.state.hasChanges} 
-                variant="contained" 
-                color="secondary" 
-                onClick={() => this._mutationSave(save)}>
+                :
+                <Button
+                  disabled={errorInData || !this.state.hasChanges}
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => this._mutationSave(save)}>
                   Add
               </Button>
             )}
@@ -800,9 +802,9 @@ class NewApplicantDialog extends React.Component {
       name: '',
       lastName: '',
       avatar: '',
-      phones: { list: [{ number: '', label: ''}], keyName: 'number' },
-      mails: { list: [{ mail: '', label: ''}], keyName: 'mail' },
-      accounts: { list: [{ account: '', label: ''}], keyName: 'account' },
+      phones: { list: [{ number: '', label: '' }], keyName: 'number' },
+      mails: { list: [{ mail: '', label: '' }], keyName: 'mail' },
+      accounts: { list: [{ account: '', label: '' }], keyName: 'account' },
       position: '',
       address: '',
     }
@@ -817,10 +819,10 @@ class NewApplicantDialog extends React.Component {
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Add Applicant</DialogTitle>
-        <ApplicantContent 
-          applicant={newApplicant} 
-          closeDialog={closeDialog} 
-          setValue={setValue} 
+        <ApplicantContent
+          applicant={newApplicant}
+          closeDialog={closeDialog}
+          setValue={setValue}
           setSnackBar={setSnackBar}
         />
       </Dialog>
@@ -833,13 +835,13 @@ class EditApplicantDialog extends React.Component {
   render() {
 
     const id = this.props.applicantSelectedId;
-    const {isEnabled, closeDialog, fullScreen, setValue, setSnackBar} = this.props;
+    const { isEnabled, closeDialog, fullScreen, setValue, setSnackBar } = this.props;
 
     return (
-      <Query 
-        query={GET_APPLICANT_BY_ID} 
-        variables={{ id }} 
-        skip={id === ""} 
+      <Query
+        query={GET_APPLICANT_BY_ID}
+        variables={{ id }}
+        skip={id === ""}
         fetchPolicy="no-cache">
         {({ loading, error, data }) => {
           if (loading) return <div>Loading...</div>
@@ -880,9 +882,9 @@ class ApplicantDialogContent extends React.Component {
       <React.Fragment>
         {
           (isNewApplicant) ?
-            <NewApplicantDialog 
-              fullScreen={fullScreen} 
-              closeDialog={this._closeDialog} 
+            <NewApplicantDialog
+              fullScreen={fullScreen}
+              closeDialog={this._closeDialog}
               isEnabled={this.props.isEnabled}
               setValue={setValue}
               setSnackBar={setSnackBar}
@@ -890,8 +892,8 @@ class ApplicantDialogContent extends React.Component {
             :
             <EditApplicantDialog
               applicantSelectedId={id}
-              fullScreen={fullScreen} 
-              closeDialog={this._closeDialog} 
+              fullScreen={fullScreen}
+              closeDialog={this._closeDialog}
               isEnabled={this.props.isEnabled}
               setValue={setValue}
               setSnackBar={setSnackBar}

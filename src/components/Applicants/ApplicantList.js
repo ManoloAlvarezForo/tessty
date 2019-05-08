@@ -7,7 +7,7 @@ class ApplicantList extends React.Component {
         const { list, selectedAction } = this.props;
         return (
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', width: this.props.width }}>
-                <div style={{ overflow: 'auto', height: 'calc(100vh - 65px)', width: '100%', padding: '5px 5px 5px 0' }}>
+                <div style={{ overflow: 'auto', height: 'calc(100vh - 97px)', width: '100%', padding: '5px 5px 5px 0' }}>
                     <GenericList
                         selectedAction={selectedAction}
                         item={ApplicantListItem}
