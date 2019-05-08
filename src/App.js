@@ -48,11 +48,11 @@ const customTheme = createMuiTheme({
 
 const App = () => (
   <MuiThemeProvider theme={customTheme}>
-        <CssBaseline />
-        <Router>
-          <Routes />
-        </Router>
-      </MuiThemeProvider>
+    <CssBaseline />
+    <Router>
+      <Routes />
+    </Router>
+  </MuiThemeProvider>
 )
 
 export default hot(module)(App);

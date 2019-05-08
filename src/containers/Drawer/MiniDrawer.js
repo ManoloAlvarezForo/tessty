@@ -48,11 +48,11 @@ class MiniDrawer extends React.Component {
                                 {
                                     this.state.open ?
                                         (<div style={{ justifyContent: 'center', width: '100%', display: 'flex', alignItems: 'center' }}>
-                                            <Typography style={{ fontFamily: 'Pacifico Regular', fontSize: '1.8rem', fontWeight: 'normal' }} component="h4" variant="h4">{this.state.open ? 'Tessty' : 'Te'}</Typography>
+                                            <Typography style={{ fontFamily: 'Pacifico', fontSize: '1.8rem', fontWeight: 'normal' }} component="h4" variant="h4">{this.state.open ? 'Tessty' : 'Te'}</Typography>
                                         </div>) :
                                         (<div style={{ cursor: 'pointer' }} onClick={this.handleDrawer}>
                                             <div style={{ textAlign: 'center' }}>
-                                                <Typography style={{ fontFamily: 'Pacifico Regular', fontSize: '1.5rem', fontWeight: 'normal' }} variant="h4">Te</Typography>
+                                                <Typography style={{ fontFamily: 'Pacifico', fontSize: '1.5rem', fontWeight: 'normal' }} variant="h4">Te</Typography>
                                             </div>
                                         </div>)
                                 }

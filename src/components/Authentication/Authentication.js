@@ -45,7 +45,7 @@ class Authentication extends React.Component {
             <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'center' }}>
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
                     <div className="title-logo">
-                        <Typography style={{ fontFamily: 'Pacifico Regular', fontSize: '7rem', fontWeight: 'normal' }} component="h4" variant="h4" gutterBottom>Tessty</Typography>
+                        <Typography style={{ fontFamily: 'Pacifico', fontSize: '7rem', fontWeight: 'normal' }} component="h4" variant="h4" gutterBottom>Tessty</Typography>
                     </div>
                     <div className="auth-container" style={{ height: '100%' }}>
                         <div className="form-container" style={{ flexDirection: 'column', display: 'flex' }}>
